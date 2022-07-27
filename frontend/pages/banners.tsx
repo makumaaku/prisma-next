@@ -7,7 +7,20 @@ type Props = {
   banners: BannerProps[]
 }
 
+export type BannerModalState = {
+  isOpen: boolean;
+  banner: BannerProps | null;
+}
+
+
 const Drafts: React.FC<Props> = (props) => {
+  const [modalState, setIsOpen] = React.useState<BannerModalState>({ isOpen: false, banner: null });
+
+  function setModalState(state: BannerModalState) {
+    console.log(state);
+    setIsOpen(state);
+  }
+
   return (
     <Layout>
       <div className="page">
@@ -15,7 +28,7 @@ const Drafts: React.FC<Props> = (props) => {
         <main>
           {props.banners.map((banner) => (
             <div key={banner.imageUrl} className="post">
-              <BannerImage banner={banner} />
+              <BannerImage banner={banner} modalState={modalState} setBannerState={setModalState} />
             </div>
           ))}
         </main>

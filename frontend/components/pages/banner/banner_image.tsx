@@ -1,5 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
+import BannerEditModal from './banner_edit_modal';
+import { BannerModalState } from '../../../pages/banners';
 
 export type BannerProps = {
   imageUrl: string;
@@ -8,9 +10,13 @@ export type BannerProps = {
 }
 
 
-const BannerImage: React.FC<{ banner: BannerProps }> = ({ banner }) => {
+const BannerImage: React.FC<{ banner: BannerProps, modalState: BannerModalState, setBannerState: (state: BannerModalState) => void }> = ({ banner, modalState, setBannerState }) => {
+  const isOpen = modalState.isOpen && modalState.banner.imageUrl == banner.imageUrl;
+  console.log(isOpen);
+
   return (
-    <div onClick={() => { }}>
+    // モーダルの表示
+    <div onClick={() => isOpen ? () => { } : setBannerState({ isOpen: true, banner: banner })}>
       <Image
         src={banner.imageUrl}
         alt="test"
@@ -24,6 +30,13 @@ const BannerImage: React.FC<{ banner: BannerProps }> = ({ banner }) => {
             padding: 2rem;
           }
         `}</style>
+      <div>
+        <BannerEditModal props={{
+          isOpen: isOpen,
+          setBannerState: setBannerState
+        }} />
+      </div>
+
     </div>
   )
 }
