@@ -20,19 +20,23 @@ const BannerImage: React.FC<{ banner: BannerProps, modalState: BannerModalState,
       <Image
         src={banner.imageUrl}
         alt="test"
-        width={300}
-        height={180}
+        width={180}
+        height={100}
       />
       <small>{banner.order}</small>
       <style jsx>{`
           div {
             color: inherit;
-            padding: 2rem;
+            padding: 0.5rem;
+            height:120px;
+            width:60rem;
+        
           }
         `}</style>
       <div>
         <BannerEditModal props={{
           isOpen: isOpen,
+          banner: banner,
           setBannerState: setBannerState
         }} />
       </div>

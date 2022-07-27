@@ -1,9 +1,12 @@
 import React from 'react'
 import ReactModal from 'react-modal';
+import Image from 'next/image'
 import { BannerModalState } from '../../../pages/banners';
+import { BannerProps } from './banner_image';
 
 export type BannerModalProps = {
   isOpen: boolean;
+  banner: BannerProps,
   setBannerState: (state: BannerModalState) => void
 }
 
@@ -17,15 +20,43 @@ const BannerEditModal: React.FC<{ props: BannerModalProps }> = ({ props }) => {
       style={customStyles}
       contentLabel="Example Modal"
     >
-      <button onClick={() => props.setBannerState({ isOpen: false, banner: null })}>close</button>
-      <div>I am a modal</div>
-      <form>
-        <input />
-        <button>tab navigation</button>
-        <button>stays</button>
-        <button>inside</button>
-        <button>the modal</button>
-      </form>
+      <div className='modalContent'>
+        <Image
+          src={props.banner.imageUrl}
+          alt="test"
+          width={600}
+          height={360}
+        />
+        <form>
+          <input type="text" name="text" placeholder="https://tier-family.co.jp/" />
+          <button>確定</button>
+        </form>
+        <button onClick={() => props.setBannerState({ isOpen: false, banner: null })}>close</button>
+      </div>
+      <style jsx>{`
+        .modalContent{
+          display: flex;
+          flex-direction: column;
+        }
+        
+        form {
+          display: flex;
+          flex-direction: column;
+        }
+
+        input {
+          border: 1px solid #ddd;
+          border-radius: 6px;
+          padding-left: 1em;
+          padding-right: 1em;
+          height: 48px;
+          flex: 1;
+          width: 100%;
+          max-width: 410px;
+          background: #eaedf2;
+          font-size: 18px;
+        }
+      `}</style>
     </ReactModal>
   )
 }
@@ -39,7 +70,7 @@ const customStyles: ReactModal.Styles = {
     left: '50%',
     right: 'auto',
     bottom: 'auto',
-    marginRight: '-50%',
+    marginRight: '-5%',
     transform: 'translate(-50%, -50%)'
   },
   // 親ウィンドウのスタイル（ちょっと暗くする）
