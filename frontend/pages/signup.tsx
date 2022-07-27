@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Router from 'next/router'
-import Layout from '../components/Layout'
+import Layout from '../components/global/Layout'
 
 const SignUp: React.FC = () => {
   const [name, setName] = useState('')
@@ -47,7 +47,7 @@ const SignUp: React.FC = () => {
           />
           <a className="back" href="#" onClick={() => Router.push('/')}>
             or Cancel
-        </a>
+          </a>
         </form>
       </div>
       <style jsx>{`

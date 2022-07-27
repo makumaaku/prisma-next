@@ -48,13 +48,13 @@ app.put("/banners", async (req, res) => {
   res.json(updatedBanners);
 });
 
-// app.get('/feed', async (req, res) => {
+// app.get("/feed", async (req, res) => {
 //   const posts = await prisma.post.findMany({
 //     where: { published: true },
-//     include: { author: true }
-//   })
-//   res.json(posts)
-// })
+//     include: { author: true },
+//   });
+//   res.json(posts);
+// });
 
 // app.get('/filterPosts', async (req, res) => {
 //   const { searchString }: { searchString?: string } = req.query;

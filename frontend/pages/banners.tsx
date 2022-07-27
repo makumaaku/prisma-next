@@ -1,21 +1,21 @@
 import React from "react"
 import { GetServerSideProps } from "next"
 import Layout from "../components/global/Layout"
-import Post, { PostProps } from "../components/Post"
+import BannerImage, { BannerProps } from "../components/pages/banner/banner_image"
 
 type Props = {
-  drafts: PostProps[]
+  banners: BannerProps[]
 }
 
 const Drafts: React.FC<Props> = (props) => {
   return (
     <Layout>
       <div className="page">
-        <h1>Drafts</h1>
+        <h1>バナー画像の設定</h1>
         <main>
-          {props.drafts.map((post) => (
-            <div key={post.id} className="post">
-              <Post post={post} />
+          {props.banners.map((banner) => (
+            <div key={banner.imageUrl} className="post">
+              <BannerImage banner={banner} />
             </div>
           ))}
         </main>
@@ -39,10 +39,10 @@ const Drafts: React.FC<Props> = (props) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await fetch("http://localhost:3001/drafts")
-  const drafts = await res.json()
+  const res = await fetch("http://localhost:3001/banners")
+  const banners = await res.json()
   return {
-    props: { drafts },
+    props: { banners },
   }
 }
 

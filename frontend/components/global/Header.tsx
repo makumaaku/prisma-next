@@ -7,16 +7,16 @@ const Header: React.FC = () => {
   const isActive: (pathname: string) => boolean =
     pathname => router.pathname === pathname
 
-  return(
+  return (
     <nav>
       <div className="left">
         <Link href="/">
           <a className="bold" data-active={isActive('/')}>
-            Blog
+            Admin Tool
           </a>
         </Link>
-        <Link href="/drafts">
-          <a data-active={isActive('/drafts')}>Drafts</a>
+        <Link href="/banners">
+          <a data-active={isActive('/banners')}>Banner</a>
         </Link>
       </div>
       <div className="right">

@@ -1,23 +1,23 @@
 import React from 'react'
-import { GetServerSideProps } from 'next'
-import Layout from '../components/Layout'
+// import { GetServerSideProps } from 'next'
+import Layout from '../components/global/Layout'
 import Post, { PostProps } from '../components/Post'
 
 type Props = {
   feed: PostProps[]
 }
 
-const Blog : React.FC<Props> = props => {
+const Blog: React.FC<Props> = props => {
   return (
     <Layout>
       <div className="page">
         <h1>My Blog</h1>
         <main>
-          {props.feed.map(post => (
+          {/* {props.feed.map(post => (
             <div key={post.id} className="post">
               <Post post={post} />
             </div>
-          ))}
+          ))} */}
         </main>
       </div>
       <style jsx>{`
@@ -38,12 +38,12 @@ const Blog : React.FC<Props> = props => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await fetch('http://localhost:3001/feed')
-  const feed = await res.json()
-  return {
-    props: { feed },
-  }
-}
+// export const getServerSideProps: GetServerSideProps = async () => {
+//   const res = await fetch('http://localhost:3001/feed')
+//   const feed = await res.json()
+//   return {
+//     props: {},
+//   }
+// }
 
 export default Blog
